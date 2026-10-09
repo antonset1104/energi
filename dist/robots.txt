@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://energi.vijeron.com/sitemap.xml
