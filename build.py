@@ -125,7 +125,7 @@ def head(lang: str, path: str, title: str, description: str, kind: str = "WebPag
         + f"<meta property='og:description' content='{esc(description)}'><meta property='og:url' content='{esc(url)}'>"
         + "<meta name='theme-color' content='#102a2b'><link rel='icon' type='image/svg+xml' href='/assets/icon.svg'>"
         + "<link rel='stylesheet' href='/assets/site.css'>"
-        + f"<script type='application/ld+json'>{json.dumps(schema, ensure_ascii=False, separators=(',', ':'))}</script>{tags}</head><body>"
+        + f"<script type='application/ld+json'>{json.dumps(schema, ensure_ascii=False, separators=(',', ':'))}</script>{tags}<script defer src=https://vijeron.com/assets/vijeron-ads.js></script></head><body>"
     )
 
 
