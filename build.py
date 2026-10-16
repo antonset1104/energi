@@ -1,6 +1,8 @@
 """Build the self-contained, bilingual static site into dist/. No network or packages."""
 from __future__ import annotations
 
+ADS_LOADER = '<script defer src="https://vijeron.com/assets/vijeron-ads.js"></script>'
+
 import html
 import json
 import shutil
@@ -125,7 +127,7 @@ def head(lang: str, path: str, title: str, description: str, kind: str = "WebPag
         + f"<meta property='og:description' content='{esc(description)}'><meta property='og:url' content='{esc(url)}'>"
         + "<meta name='theme-color' content='#102a2b'><link rel='icon' type='image/svg+xml' href='/assets/icon.svg'>"
         + "<link rel='stylesheet' href='/assets/site.css'>"
-        + f"<script type='application/ld+json'>{json.dumps(schema, ensure_ascii=False, separators=(',', ':'))}</script>{tags}<script defer src=https://vijeron.com/assets/vijeron-ads.js></script></head><body>"
+        + f"<script type='application/ld+json'>{json.dumps(schema, ensure_ascii=False, separators=(',', ':'))}</script>{tags}{ADS_LOADER if ads else ''}</head><body>"
     )
 
 
@@ -273,7 +275,7 @@ def info_page(lang: str, kind: str) -> None:
     if kind == "metode":
         body += f"<section class='references'><h2>{esc(t['references'])}</h2>{source_links(list(SOURCES))}</section>"
     body += "</div></main>"
-    write(local_path(lang, path) + "index.html", head(lang, path, title, desc, ads=kind != "privasi") + chrome(lang, path) + body + finish(lang))
+    write(local_path(lang, path) + "index.html", head(lang, path, title, desc, ads=False) + chrome(lang, path) + body + finish(lang))
     URLS.append((SITE + local_path(lang, path), None))
 
 
